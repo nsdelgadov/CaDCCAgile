@@ -284,7 +284,7 @@ INSTALLED_APPS = [
     "mezzanine.twitter",
     # "mezzanine.accounts",
     # "mezzanine.mobile",
-    "gunicorn",
+    "cadcc.apps.CadccConfig",
 ]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
