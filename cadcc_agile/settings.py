@@ -84,7 +84,9 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Setting to turn on featured images for blog posts. Defaults to False.
 #
-# BLOG_USE_FEATURED_IMAGE = True
+BLOG_USE_FEATURED_IMAGE = True
+
+BLOG_SLUG = ""
 
 # If True, the django-modeltranslation will be added to the
 # INSTALLED_APPS setting.
