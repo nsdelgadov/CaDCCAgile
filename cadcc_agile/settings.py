@@ -284,6 +284,7 @@ INSTALLED_APPS = [
     "mezzanine.twitter",
     # "mezzanine.accounts",
     # "mezzanine.mobile",
+    "mezzanine_facebook",
     "cadcc.apps.CadccConfig",
 ]
 
