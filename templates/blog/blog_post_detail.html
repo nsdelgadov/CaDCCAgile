@@ -90,8 +90,13 @@
 
 {% block blog_post_detail_sharebuttons %}
 {% set_short_url_for blog_post %}
-<a class="btn btn-sm share-twitter" target="_blank" href="https://twitter.com/intent/tweet?url={{ blog_post.short_url|urlencode }}&amp;text={{ blog_post.title|urlencode }}">{% trans "Share on Twitter" %}</a>
-<a class="btn btn-sm share-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">{% trans "Share on Facebook" %}</a>
+<a class="btn btn-sm share-twitter" target="_blank" href="https://twitter.com/intent/tweet?url={{ blog_post.url_short|urlencode }}&amp;text={{ blog_post.title|urlencode }}">{% trans "Share on Twitter" %}</a>
+<a class="btn btn-sm share-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ blog_post.url_short|urlencode }}">{% trans "Share on Facebook" %}</a>
+{% if request.user.is_staff %}
+<button class="btn btn-sm share-twitter" id="staff-share">Compartir en Telegram</button>
+{% else %}
+<a class="btn btn-sm share-twitter" target="_blank" href="https://telegram.me/share/url?url={{ blog_post.url_short|urlencode }}">Compartir en Telegram</a>
+{% endif %}
 {% endblock %}
 
 {% block blog_post_previous_next %}
@@ -134,4 +139,29 @@
 
 {% block right_panel %}
 {% include "blog/includes/filter_panel.html" %}
+{% endblock %}
+
+{% block footer_js %}
+{{ block.super }}
+<script type="text/javascript">
+    $('#staff-share').click(function(e){
+        $.ajax({
+          headers: { 
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              "X-CSRFToken": '{{ csrf_token }}'
+          },
+          type: "POST",
+          dataType: 'json',
+          data: JSON.stringify({'pk': {{blog_post.id}} }),
+          url: "/cadcc/compartir/telegram/",
+          success: function(data) {
+            console.log(data);
+          },
+          error: function(errs){
+            console.error(errs);
+          }
+        });
+    });
+</script>
 {% endblock %}
