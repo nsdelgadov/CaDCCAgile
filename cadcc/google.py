@@ -1,10 +1,10 @@
 import json
 import requests
 
-GOOGLE_URL_SHORTEN_API = 'AIzaSyCwBXPhuNGpnQL2WOOgXW-kc0RdwAvtDHA'
+from cadcc_agile.settings import GOOGLE_API_URL, GOOGLE_URL_SHORTEN_API
 
 def google_url_shorten(url):
-    req_url = 'https://www.googleapis.com/urlshortener/v1/url?key=' + GOOGLE_URL_SHORTEN_API
+    req_url = GOOGLE_API_URL + GOOGLE_URL_SHORTEN_API
     payload = {'longUrl': url}
     headers = {'content-type': 'application/json'}
     r = requests.post(req_url, data=json.dumps(payload), headers=headers)
