@@ -1,7 +1,7 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from .views import *
 
-urlpatterns = patterns('',
+urlpatterns = [
 
     url(r'^compartir/telegram/$' , share_on_telegram , name="compartir-telegram"),
-    )
+]
