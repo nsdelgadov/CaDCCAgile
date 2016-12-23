@@ -1,8 +1,5 @@
 import telepot
-
-#Credentials
-ID_BOT = "266039242:AAHfHojkbgRyhmGmLuSl1l9z5Vk3mAh4akY"
-ID_CHANNEL = "@testcadcc"
+from cadcc_agile.settings import ID_BOT, ID_CHANNEL
 
 def send_message(message, parse=None):
     """Telegram bot sends the message to the telegram channel"""
